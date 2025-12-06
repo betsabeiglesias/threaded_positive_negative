@@ -4,7 +4,10 @@ SRC_DIR = src
 INC_DIR = include
 OBJ_DIR = obj
 
-SRCS = main.c
+SRCS = main.c \
+		check_args.c \
+		aux.c \
+		threads.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
