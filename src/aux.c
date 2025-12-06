@@ -11,3 +11,20 @@ void print_usage(void)
 {
     write(STDERR_FILENO, USAGE_MSG, strlen(USAGE_MSG));
 }
+
+void print_list(t_list *list)
+{
+	int	i;
+
+	i = 1;	
+	if(!list)
+		return ;
+	while(list)
+	{
+		printf("Position %d:\t", i);
+		printf("%d\n", list->nb);
+		list = list->next;
+		i++;
+	}
+	printf("\n");
+}

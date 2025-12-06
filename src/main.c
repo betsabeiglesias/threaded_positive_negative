@@ -10,11 +10,17 @@ int main(int argc, char **argv)
     if (check_args(argc, argv, &data) != EXIT_SUCCESS)
         return (EXIT_FAILURE);
 
-    printf("Checking args: SUCCESS\n");
-    printf("Threads: %d\n", data.thread_num);
-    printf("Numbers per thread: %d\n", data.nb_per_thread);
-
-    destroy_mutex(&data);
+    if (init_threads(&data) != EXIT_SUCCESS)
+        return (EXIT_FAILURE);
     
+    if (join_threads(&data) != EXIT_SUCCESS)
+        return (EXIT_FAILURE);
+   
+    final_list(data.positive, "POSITIVE");
+    final_list(data.negative, "NEGATIVE");
+
+    free(data.th);
+    destroy_mutex(&data);
+
     return (EXIT_SUCCESS);
 }
